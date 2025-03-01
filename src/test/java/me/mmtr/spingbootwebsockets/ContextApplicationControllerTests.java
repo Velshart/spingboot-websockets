@@ -1,7 +1,6 @@
 package me.mmtr.spingbootwebsockets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.NonNull;
 import me.mmtr.spingbootwebsockets.model.Message;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.lang.NonNull;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.SubscribableChannel;
 import org.springframework.messaging.simp.annotation.support.SimpAnnotationMethodMessageHandler;
