@@ -65,15 +65,15 @@ public class ContextApplicationControllerTests {
 
         this.clientOutboundChannel.send(messageToSend);
 
-        org.springframework.messaging.Message<?> positionUpdate = this.clientOutboundChannelInterceptor
+        org.springframework.messaging.Message<?> reply = this.clientOutboundChannelInterceptor
                 .awaitMessage(5);
-        Assertions.assertNotNull(positionUpdate);
+        Assertions.assertNotNull(reply);
 
-        StompHeaderAccessor positionUpdateHeaders = StompHeaderAccessor.wrap(positionUpdate);
+        StompHeaderAccessor positionUpdateHeaders = StompHeaderAccessor.wrap(reply);
         Assertions.assertEquals("/topic/messages", positionUpdateHeaders.getDestination());
         Assertions.assertEquals("0", positionUpdateHeaders.getSessionId());
 
-        String json = new String((byte[]) positionUpdate.getPayload(), StandardCharsets.UTF_8);
+        String json = new String((byte[]) reply.getPayload(), StandardCharsets.UTF_8);
         new JsonPathExpectationsHelper("$.content")
                 .assertValue(json, "Message Content");
 
